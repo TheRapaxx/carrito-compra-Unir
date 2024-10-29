@@ -53,6 +53,7 @@ class Carrito {
         if (producto) {
             producto.quantity = unidades;
             this.actualizarTotal(); // Actualiza el total después de cambiar la cantidad
+            this.renderizarDetalles(); // Actualiza los detalles
         }
     }
 
@@ -113,11 +114,21 @@ class Carrito {
             if (producto.quantity > 0) {
                 const div = document.createElement('div');
                 div.innerHTML = `
-                    <p>${producto.title} - ${producto.quantity} x ${producto.precio.toFixed(2)} €</p>
+                    <p>${producto.title} - ${producto.quantity} x ${producto.precio.toFixed(2)} € 
+                    <button onclick="carrito.eliminarProducto('${producto.sku}')">Eliminar</button></p>
                 `;
                 detallesContainer.appendChild(div);
             }
         });
+    }
+
+    eliminarProducto(sku) {
+        const producto = this.productos.find(item => item.sku === sku);
+        if (producto) {
+            producto.quantity = 0; // Restablecer la cantidad a 0
+            this.actualizarTotal(); // Actualizar el total después de eliminar el producto
+            this.renderizarDetalles(); // Renderizar los detalles actualizados
+        }
     }
 }
 
