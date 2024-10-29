@@ -14,7 +14,7 @@ class Carrito {
             // Obtener el contenido como JSON
             const data = await response.json();
 
-            // Verificar la estructura de los datos
+            // Asegúrate de que estás accediendo a la propiedad correcta
             if (data && data.products) {
                 this.productos = data.products.map(producto => ({
                     sku: producto.SKU,
@@ -90,7 +90,7 @@ class Carrito {
 
 // Ejemplo de uso
 const carrito = new Carrito();
-const apiUrl = 'https://api.allorigins.win/get?url=' + encodeURIComponent('http://jsonblob.com/1300913045424168960'); // URL de la API con el proxy
+const apiUrl = 'https://run.mocky.io/v3/f06dd58d-ed53-4cfd-8c2b-c859307c711e'; // URL de Mocky
 
 // Cargar productos desde la API
 carrito.cargarProductosDesdeAPI(apiUrl);
