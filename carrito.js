@@ -35,16 +35,19 @@ class Carrito {
 
     agregarProducto(sku) {
         const producto = this.productos.find(item => item.sku === sku);
-        if (producto) {
-            producto.quantity += 1;
+        const input = document.getElementById(producto.sku);
+        const cantidadIngresada = parseInt(input.value); // Obtener la cantidad ingresada
+
+        // Verificar que la cantidad sea mayor que 0
+        if (producto && cantidadIngresada > 0) {
+            producto.quantity += cantidadIngresada; // Agregar la cantidad ingresada al total
             this.actualizarTotal();
             this.renderizarDetalles(); // Renderiza los detalles de los productos en el carrito
 
             // Restablecer el contador a 0
-            const input = document.getElementById(producto.sku);
             input.value = 0; // Restablecer contador
         } else {
-            console.error('Producto no encontrado');
+            alert('Por favor, ingresa una cantidad mayor que 0.'); // Mensaje de error
         }
     }
 
@@ -53,7 +56,7 @@ class Carrito {
         if (producto) {
             producto.quantity = unidades;
             this.actualizarTotal(); // Actualiza el total después de cambiar la cantidad
-            this.renderizarDetalles(); // Actualiza los detalles
+            this.renderizarDetalles(); // Renderizar detalles actualizados
         }
     }
 
@@ -79,17 +82,10 @@ class Carrito {
             div.innerHTML = `
                 <h3>${producto.title}</h3>
                 <p>Precio: ${producto.precio.toFixed(2)} €</p>
-                <input type="number" value="${producto.quantity}" min="0" id="${producto.sku}">
+                <input type="number" value="0" min="0" id="${producto.sku}">
                 <button onclick="carrito.agregarProducto('${producto.sku}')">Agregar</button>
             `;
             productosContainer.appendChild(div);
-
-            // Escuchar cambios en el input de unidades
-            const input = document.getElementById(producto.sku);
-            input.addEventListener('change', (e) => {
-                const unidades = parseInt(e.target.value);
-                this.actualizarUnidades(producto.sku, isNaN(unidades) ? 0 : unidades);
-            });
         });
     }
 
