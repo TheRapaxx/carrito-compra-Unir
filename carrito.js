@@ -11,15 +11,12 @@ class Carrito {
                 throw new Error('Error al cargar los productos');
             }
 
-            // Obtener el contenido como texto
-            const data = await response.text();
-            
-            // Intentar analizar como JSON
-            const productosData = JSON.parse(data);
+            // Obtener el contenido como JSON
+            const data = await response.json();
 
-            // Asegúrate de que estás accediendo a la propiedad correcta
-            if (productosData && productosData.products) {
-                this.productos = productosData.products.map(producto => ({
+            // Verificar la estructura de los datos
+            if (data && data.products) {
+                this.productos = data.products.map(producto => ({
                     sku: producto.SKU,
                     title: producto.title,
                     precio: parseFloat(producto.price),
