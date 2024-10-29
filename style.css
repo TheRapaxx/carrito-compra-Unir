@@ -1,0 +1,13 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+.producto {
+    margin: 10px 0;
+}
+
+.total {
+    font-weight: bold;
+    margin-top: 20px;
+}
