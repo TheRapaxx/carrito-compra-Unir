@@ -90,7 +90,7 @@ class Carrito {
 
 // Ejemplo de uso
 const carrito = new Carrito();
-const apiUrl = 'https://run.mocky.io/v3/f06dd58d-ed53-4cfd-8c2b-c859307c711e'; // URL de Mocky
+const apiUrl = 'productos.json'; // URL del archivo JSON
 
 // Cargar productos desde la API
 carrito.cargarProductosDesdeAPI(apiUrl);
