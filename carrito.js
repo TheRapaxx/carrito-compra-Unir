@@ -38,6 +38,11 @@ class Carrito {
         if (producto) {
             producto.quantity += 1;
             this.actualizarTotal();
+            this.renderizarDetalles(); // Renderiza los detalles de los productos en el carrito
+
+            // Restablecer el contador a 0
+            const input = document.getElementById(producto.sku);
+            input.value = 0; // Restablecer contador
         } else {
             console.error('Producto no encontrado');
         }
@@ -98,6 +103,21 @@ class Carrito {
         this.productos.push(nuevoProducto);
         this.renderizarProductos(); // Actualiza la vista para incluir el nuevo producto
         this.actualizarTotal(); // Actualiza el total
+    }
+
+    renderizarDetalles() {
+        const detallesContainer = document.getElementById('detalles');
+        detallesContainer.innerHTML = ''; // Limpiar contenedor
+
+        this.productos.forEach(producto => {
+            if (producto.quantity > 0) {
+                const div = document.createElement('div');
+                div.innerHTML = `
+                    <p>${producto.title} - ${producto.quantity} x ${producto.precio.toFixed(2)} €</p>
+                `;
+                detallesContainer.appendChild(div);
+            }
+        });
     }
 }
 
