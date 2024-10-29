@@ -47,7 +47,7 @@ class Carrito {
         const producto = this.productos.find(item => item.sku === sku);
         if (producto) {
             producto.quantity = unidades;
-            this.actualizarTotal();
+            this.actualizarTotal(); // Actualiza el total después de cambiar la cantidad
         }
     }
 
@@ -60,7 +60,7 @@ class Carrito {
         const total = this.productos.reduce((sum, item) => {
             return sum + (item.precio * item.quantity);
         }, 0);
-        totalElement.innerText = `Total: ${total.toFixed(2)} €`;
+        totalElement.innerText = `Total: ${total.toFixed(2)} €`; // Muestra el total en el formato correcto
     }
 
     renderizarProductos() {
@@ -86,6 +86,19 @@ class Carrito {
             });
         });
     }
+
+    agregarNuevoProducto(title, precio) {
+        const newSKU = `SKU${this.productos.length + 1}`; // Genera un nuevo SKU
+        const nuevoProducto = {
+            sku: newSKU,
+            title: title,
+            precio: parseFloat(precio),
+            quantity: 0
+        };
+        this.productos.push(nuevoProducto);
+        this.renderizarProductos(); // Actualiza la vista para incluir el nuevo producto
+        this.actualizarTotal(); // Actualiza el total
+    }
 }
 
 // Ejemplo de uso
@@ -94,3 +107,17 @@ const apiUrl = 'productos.json'; // URL del archivo JSON
 
 // Cargar productos desde la API
 carrito.cargarProductosDesdeAPI(apiUrl);
+
+// Manejo del formulario para añadir nuevos productos
+document.getElementById('addProductButton').addEventListener('click', () => {
+    const title = document.getElementById('newProductTitle').value;
+    const price = document.getElementById('newProductPrice').value;
+
+    if (title && price) {
+        carrito.agregarNuevoProducto(title, price);
+        document.getElementById('newProductTitle').value = ''; // Limpiar el campo
+        document.getElementById('newProductPrice').value = ''; // Limpiar el campo
+    } else {
+        alert('Por favor, complete todos los campos.');
+    }
+});

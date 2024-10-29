@@ -4,13 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tienda Online</title>
-    <link rel="stylesheet" href="style.css"> <!-- Vincula el CSS si lo usas -->
+    <link rel="stylesheet" href="style.css"> <!-- Vincula el CSS -->
 </head>
 <body>
     <h1>Tienda Online</h1>
+    
+    <!-- Formulario para añadir productos -->
+    <div class="form-container">
+        <h2>Añadir Producto</h2>
+        <input type="text" id="newProductTitle" placeholder="Nombre del producto" required>
+        <input type="number" id="newProductPrice" placeholder="Precio" required>
+        <button id="addProductButton">Añadir Producto</button>
+    </div>
+
     <div id="productos"></div>
     <div class="total" id="total">Total: 0 €</div>
 
-    <script src="carrito.js"></script> <!-- Vincula el archivo JavaScript -->
+    <script src="carrito.js"></script> <!-- Vincula el archivo JS -->
 </body>
 </html>

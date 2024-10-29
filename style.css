@@ -1,13 +1,56 @@
 body {
     font-family: Arial, sans-serif;
     margin: 20px;
+    background-color: #f0f8f0;
+    color: #333;
+}
+
+h1 {
+    color: #3c763d;
+}
+
+h2 {
+    color: #8c9b3e;
+}
+
+.form-container {
+    background-color: #dff0d8;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+input[type="text"], input[type="number"] {
+    width: 200px;
+    padding: 8px;
+    margin-right: 10px;
+    border: 1px solid #3c763d;
+    border-radius: 4px;
+}
+
+button {
+    background-color: #5cb85c;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #4cae4c;
 }
 
 .producto {
+    background-color: #fff;
+    border: 1px solid #d6e9c6;
+    padding: 10px;
     margin: 10px 0;
+    border-radius: 5px;
 }
 
 .total {
     font-weight: bold;
     margin-top: 20px;
+    color: #8c9b3e;
 }

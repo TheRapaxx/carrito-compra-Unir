@@ -15,6 +15,16 @@
             "SKU": "IOKW9BQ9F3",
             "title": "Funda de piel",
             "price": "79.99"
+        },
+        {
+            "SKU": "XYZ123456",
+            "title": "Auriculares Inalámbricos",
+            "price": "129.99"
+        },
+        {
+            "SKU": "XYZ654321",
+            "title": "Reloj Inteligente",
+            "price": "249.99"
         }
     ]
 }
